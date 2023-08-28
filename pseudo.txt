@@ -1,0 +1,90 @@
+Set Rails and configure gems:  
+
+
+Create models for Recipe sharing app 
+  - Users: Username, Password_digest, Profile Information:Text 
+
+  - Movies: Title, Release Year, Genre, Director, Description 
+
+  - Reviews: ReviewText,Rating, UserId:foreignkey , likes:integer, movieId:foreignkey
+ 
+
+Routing and Validations
+  AppController Active Record rescue: 
+    rescue_from  ::ActiveRecord::RecordNotFound do |exception| 
+        render json: {error: "#{exception.message}"}, status: :not_found
+    end
+
+    rescue_from ::ActiveRecord::RecordInvalid do |exception| 
+        render json: {errors: "#{exception.message}"}, status: :unprocessable_entity
+    end
+
+  Necessary Routes: 
+    - Users: Create, Read, Update, Destroy
+    - Session: Create, Destroy 
+    - Movie:  Read, Create(if movie does not exist)
+    - Reviews: Create, Read, Update, Destroy 
+
+  Validations: 
+    - Users: :username-uniqueness: {message: ""}-presence, :password-has_secure_password, :profile_information-presence
+    - Review: :text-length: { minimum: 50 } :MovieID-presence :userID-presence  
+    - Movie: :title-presence, releaseYear-presence , genre-presence, director-presence, description-length: { minimum: 50 }
+Authentication and Cookies
+  User_authorization: before_action authorization ... unless session.include? :user_id
+
+
+
+Relationships and associations 
+    One-to-Many Relationship (Users to Reviews)
+    Many-to-Many Relationship (User to Movie through Review)
+    One-to-Many Relationship (Movie to Reviews)
+
+Serializations 
+  Attributes 
+    - Users: :id, :username, :profile_information  
+    - Review: :id, :reviewText, :rating, :likes 
+    - Movie: :id, :title, :genre, :releaseYear, :director, :description
+
+
+Set React and frontend:
+
+Components 
+  - login 
+  - logout 
+  - signup 
+  - ReviewsList 
+  - ReviewCard 
+  - ReviewForm 
+  - navBar 
+  - searchMovies
+  - MovieList 
+  - MovieCard 
+  - MovieForm 
+  
+
+Pages 
+  - Home 
+  - Profile with user reviews 
+  - Movies (by Genre  ) 
+
+
+
+CSS
+  - Bootstrap? 
+  - Tailwind? 
+  - Pico? 
+  - Vanilla? 
+
+Fetch Requests and State  
+  Make sure the Requests match Routes: 
+    - /me 
+    - /signup 
+    - /login
+    - /logout 
+    - /reviewform 
+    - / 
+    - /profile/:id 
+    - /reviews
+    - /commentform 
+    - /categories
+
