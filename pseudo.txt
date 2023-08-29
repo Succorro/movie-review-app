@@ -4,9 +4,9 @@ Set Rails and configure gems:
 Create models for Recipe sharing app 
   - Users: Username, Password_digest, Profile Information:Text 
 
-  - Movies: Title, Release Year, Genre, Director, Description 
+  - Movies: Title, Release Year:date, Genre, Director, Description 
 
-  - Reviews: ReviewText,Rating, UserId:foreignkey , likes:integer, movieId:foreignkey
+  - Reviews: ReviewText,Rating:integer, UserId:foreignkey , likes:integer, movieId:foreignkey
  
 
 Routing and Validations
