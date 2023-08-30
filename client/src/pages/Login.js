@@ -10,14 +10,14 @@ function Login({ onLogin }) {
       {showLogin ? (
         <>
           {" "}
-          <p>Don't have an account?</p>
           <LoginForm onLogin={onLogin} />
+          <p>Don't have an account?</p>
           <button onClick={() => setShowLogin(false)}>Sign Up</button>
         </>
       ) : (
         <>
-          <p>Already have an account? </p>
           <SignUpForm onLogin={onLogin} />
+          <p>Already have an account? </p>
           <button onClick={() => setShowLogin(true)}>Login</button>
         </>
       )}
