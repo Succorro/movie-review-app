@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
   resources :reviews
-  resources :movies
-  resources :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :movies, only: [:create, :index, :show]
+  
+  # User controller routes 
+  post "/signup", to: "users#create"
+  get "/me", to: "users#show"
+  resources :user, only: [:update]
+
+  # Sessions Controller routes 
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
 
   # Defines the root path route ("/")
   # root "articles#index"
 
-  get '/hello', to: 'application#hello_world'
   get '*path',
   to: 'fallback#index',
   constraints: ->(req) { !req.xhr? && req.format.html? }
