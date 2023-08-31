@@ -16,10 +16,17 @@ function Profile({ user }) {
         <p>{profile_information}</p>
         <h1>Reviews</h1>
         <ul>
-          {reviews.map((review) => {
-            console.log(review);
-            return <li onClick={handleReviewClick}>{review.movie.title}</li>;
-          })}
+          {reviews[0].movie ? (
+            reviews.map((review) => {
+              return (
+                <li key={review.id} onClick={handleReviewClick}>
+                  {review.movie.title}
+                </li>
+              );
+            })
+          ) : (
+            <p> No reviews </p>
+          )}
         </ul>
       </div>
     </div>
