@@ -1,7 +1,15 @@
 import React from "react";
-
-function Movies() {
-  return <div>Movies</div>;
+import MoviesList from "../components/MoviesList";
+function Movies({ movies, handleMovieClick }) {
+  return (
+    <div>
+      All Movies
+      <MoviesList
+        movies={movies}
+        handleMovieClick={handleMovieClick}
+      ></MoviesList>
+    </div>
+  );
 }
 
 export default Movies;
