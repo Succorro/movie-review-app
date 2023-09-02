@@ -68,7 +68,6 @@ Pages
   - Movies (by Genre  ) 
 
 
-
 CSS
   - Bootstrap? 
   - Tailwind? 

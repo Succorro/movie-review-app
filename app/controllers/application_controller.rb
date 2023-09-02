@@ -15,10 +15,10 @@ class ApplicationController < ActionController::API
     render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user
   end
 
-  def render_not_found_response
+  def render_not_found_response(exception)
     render json: {error: "#{exception.message}"}, status: :not_found
   end
-  
+
   def render_unproccessable_entity_response(exception)
       render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
   end
