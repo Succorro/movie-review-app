@@ -1,9 +1,11 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 function Profile({ user }) {
   const { username, image, profile_information, reviews } = user;
-  function handleReviewClick() {
+  const history = useHistory();
+  function handleReviewClick(id) {
     console.log("hi");
+    history.push(`/movies/${id}`);
   }
   return (
     <div>
@@ -16,10 +18,13 @@ function Profile({ user }) {
         <p>{profile_information}</p>
         <h1>Reviews</h1>
         <ul>
-          {reviews[0].movie ? (
+          {reviews ? (
             reviews.map((review) => {
               return (
-                <li key={review.id} onClick={handleReviewClick}>
+                <li
+                  key={review.id}
+                  onClick={() => handleReviewClick(review.movie.id)}
+                >
                   {review.movie.title}
                 </li>
               );

@@ -11,7 +11,6 @@ import Home from "./pages/Home";
 function App() {
   const [user, setUser] = useState(null);
   const [movies, setMovies] = useState([]);
-  const [movie, setMovie] = useState([]);
 
   useEffect(() => {
     // auto-login
@@ -27,7 +26,6 @@ function App() {
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
-      console.log(r);
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
@@ -35,10 +33,8 @@ function App() {
   }, []);
 
   if (!user) return <Login onLogin={setUser} />;
-
-  function handleMovieClick(id) {
-    const movieData = movies.find((movie) => movie.id === id);
-    setMovie(movieData);
+  function onCreateReview(review, movieId) {
+    // iterate through movies to find reviews list for movie then add new review using spread operator
   }
   return (
     <BrowserRouter>
@@ -46,10 +42,14 @@ function App() {
         <Navbar user={user} setUser={setUser} />
         <Switch>
           <Route path="/movies/:id">
-            <Movie movie={movie} />
+            <Movie
+              userId={user.id}
+              movies={movies}
+              onCreateReview={onCreateReview}
+            />
           </Route>
           <Route path="/movies">
-            <Movies movies={movies} handleMovieClick={handleMovieClick} />
+            <Movies movies={movies} />
           </Route>
           <Route path="/profile">
             <Profile user={user} />

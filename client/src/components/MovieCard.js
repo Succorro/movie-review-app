@@ -1,13 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-function MovieCard({ movie, handleMovieClick }) {
+function MovieCard({ movie }) {
   const history = useHistory();
   function movieClick(id) {
-    handleMovieClick(id);
     history.push(`/movies/${id}`);
   }
-  const { id, title, release_year, genre, director, description } = movie;
+  const { id, title, release_year, genre, director } = movie;
   return (
     <div class="card text-bg-light m-2" key={id} onClick={() => movieClick(id)}>
       <div class="card-body">
