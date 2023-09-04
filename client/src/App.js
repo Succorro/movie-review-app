@@ -50,6 +50,34 @@ function App() {
     });
     setMovies(mapMovies);
   }
+  function onDeleteReview(deletedReview, movieId) {
+    const currentMovie = findMovie(movieId)[0];
+    const filteredReviews = currentMovie.reviews.filter(
+      (review) => review.id !== deletedReview.id
+    );
+    currentMovie.reviews = filteredReviews;
+    const filteredMovies = movies.map((movie) => {
+      if (movie.id === currentMovie.id) {
+        return currentMovie;
+      } else return movie;
+    });
+    setMovies(filteredMovies);
+  }
+  function onUpdateReview(updatedReview, movieId) {
+    const currentMovie = findMovie(movieId)[0];
+    const filteredReviews = currentMovie.reviews.map((review) => {
+      if (review.id === updatedReview.id) {
+        return updatedReview;
+      } else return review;
+    });
+    currentMovie.reviews = filteredReviews;
+    const filteredMovies = movies.map((movie) => {
+      if (movie.id === currentMovie.id) {
+        return currentMovie;
+      } else return movie;
+    });
+    setMovies(filteredMovies);
+  }
 
   return (
     <BrowserRouter>
@@ -61,6 +89,8 @@ function App() {
               userId={user.id}
               movies={movies}
               onCreateReview={onCreateReview}
+              onDeleteReview={onDeleteReview}
+              onUpdateReview={onUpdateReview}
             />
           </Route>
           <Route path="/movies">

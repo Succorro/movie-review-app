@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Rating } from "@mui/material";
-function ReviewCard({ reviewData, userId }) {
-  const { review, rating, user } = reviewData;
-  console.log(reviewData);
+import ReviewFormUpdate from "./ReviewFormUpdate";
+
+function ReviewCard({
+  reviewData,
+  userId,
+  movieId,
+  onDeleteReview,
+  onUpdateReview,
+}) {
+  const { id, review, rating, user } = reviewData;
+  const [showUpdate, setShowUpdate] = useState(false);
+  // console.log(reviewData);
+
   const displayReview = (
     <div>
       <h3>{user.username}</h3>
@@ -11,13 +21,35 @@ function ReviewCard({ reviewData, userId }) {
     </div>
   );
 
-  function handleReviewClick() {}
+  function handleDeleteClick(deletedReview) {
+    fetch(`/reviews/${deletedReview.id}`, {
+      method: "DELETE",
+    });
+    onDeleteReview(deletedReview, movieId);
+  }
   if (user.id === userId)
     return (
-      <div>
-        {displayReview}
-        <button onClick={handleReviewClick}>Edit Review</button>
-      </div>
+      <>
+        {" "}
+        {showUpdate ? (
+          <ReviewFormUpdate
+            setShowUpdate={setShowUpdate}
+            review={review}
+            rating={rating}
+            movieId={movieId}
+            onUpdateReview={onUpdateReview}
+            id={id}
+          />
+        ) : (
+          <div>
+            {displayReview}
+            <button onClick={() => setShowUpdate(true)}>Edit Review</button>
+            <button onClick={() => handleDeleteClick(reviewData)}>
+              Delete Review
+            </button>
+          </div>
+        )}
+      </>
     );
   return <>{displayReview}</>;
 }

@@ -3,7 +3,13 @@ import ReviewList from "../components/ReviewList";
 import ReviewForm from "../components/ReviewForm";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-function Movie({ movies, userId, onCreateReview }) {
+function Movie({
+  movies,
+  userId,
+  onCreateReview,
+  onDeleteReview,
+  onUpdateReview,
+}) {
   const [showForm, setShowForm] = useState(false);
   const { id } = useParams();
   const movieId = parseInt(id, 10);
@@ -32,7 +38,13 @@ function Movie({ movies, userId, onCreateReview }) {
       <h4 class="card-text">Plot:</h4>
       <p>{description}</p>
       <div>
-        <ReviewList reviews={reviews} userId={userId} />
+        <ReviewList
+          reviews={reviews}
+          onDeleteReview={onDeleteReview}
+          userId={userId}
+          movieId={movie.id}
+          onUpdateReview={onUpdateReview}
+        />
         {showForm ? (
           <ReviewForm
             setShowForm={setShowForm}

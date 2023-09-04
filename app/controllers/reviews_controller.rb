@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     end 
 
     def update 
-        review = @current_user.find_review
+        review = Review.find_by(id: params[:id])
         review.update!(review_params)
         render json: review, status: :accepted 
     end 
