@@ -17,7 +17,7 @@ function Movie({ movies, userId, onCreateReview }) {
       </>
     );
 
-  const { title, release_year, genre, director, description } = movie;
+  const { title, release_year, genre, director, description, reviews } = movie;
 
   return (
     <div>
@@ -32,7 +32,7 @@ function Movie({ movies, userId, onCreateReview }) {
       <h4 class="card-text">Plot:</h4>
       <p>{description}</p>
       <div>
-        <ReviewList />
+        <ReviewList reviews={reviews} userId={userId} />
         {showForm ? (
           <ReviewForm
             setShowForm={setShowForm}

@@ -7,6 +7,8 @@ import Profile from "./pages/Profile";
 import Movie from "./pages/Movie";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,12 +34,23 @@ function App() {
       }
     });
   }, []);
-
+  if (!movies) return "loading...";
   if (!user) return <Login onLogin={setUser} />;
+  function findMovie(id) {
+    return movies.filter((movie) => movie.id === id);
+  }
   function onCreateReview(review, movieId) {
     // iterate through movies to find reviews list for movie then add new review using spread operator
+    const currentMovie = findMovie(movieId)[0];
+    currentMovie.reviews = [...currentMovie.reviews, review];
+    const mapMovies = movies.map((movie) => {
+      if (movie.id === currentMovie.id) {
+        return currentMovie;
+      } else return movie;
+    });
+    setMovies(mapMovies);
   }
-  if (!movies) return "loading...";
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -55,6 +68,12 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile user={user} />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/contact">
+            <Contact />
           </Route>
           <Route path="/">
             <Home />

@@ -27,6 +27,18 @@ function Navbar({ user, setUser }) {
         >
           Movies
         </Link>
+        <Link
+          class="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
+          to="/about"
+        >
+          About
+        </Link>
+        <Link
+          class="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
+          to="/contact"
+        >
+          Contact Us
+        </Link>
       </ul>
       <ul class="nav">
         <Link class="navbar-brand px-3" to="/profile">

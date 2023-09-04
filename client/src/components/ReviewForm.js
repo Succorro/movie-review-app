@@ -14,8 +14,8 @@ function ReviewForm({ setShowForm, movieId, userId, onCreateReview }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        review,
-        rating,
+        review: review,
+        rating: rating,
         user_id: userId,
         movie_id: movieId,
       }),
