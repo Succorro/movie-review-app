@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
 
   useEffect(() => {
     // auto-login
@@ -25,6 +25,7 @@ function App() {
 
   useEffect(() => {
     // auto-login
+
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
@@ -36,6 +37,7 @@ function App() {
   function onCreateReview(review, movieId) {
     // iterate through movies to find reviews list for movie then add new review using spread operator
   }
+  if (!movies) return "loading...";
   return (
     <BrowserRouter>
       <div className="App">

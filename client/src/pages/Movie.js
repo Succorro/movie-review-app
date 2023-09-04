@@ -4,14 +4,21 @@ import ReviewForm from "../components/ReviewForm";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function Movie({ movies, userId, onCreateReview }) {
-  console.log(movies);
   const [showForm, setShowForm] = useState(false);
   const { id } = useParams();
   const movieId = parseInt(id, 10);
   const filterMovie = () => movies.find((movie) => movie.id === movieId);
   const movie = filterMovie();
-  console.log(movie);
+  if (!movie)
+    return (
+      <>
+        <h1>404 Error </h1>
+        <p>Movie Not Found</p>
+      </>
+    );
+
   const { title, release_year, genre, director, description } = movie;
+
   return (
     <div>
       Individual Movie
