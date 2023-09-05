@@ -26,30 +26,37 @@ function LoginForm({ onLogin }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          id="username"
-          autoComplete="off"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
+    <form class="align-items-center " onSubmit={handleSubmit}>
+      <div class="form-input ">
+        <label>
+          Username:
+          <input
+            class="form-control my-2"
+            type="text"
+            id="username"
+            autoComplete="off"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+      </div>
+      <div class="form-input">
+        <label>
+          Password:
+          <input
+            class="form-control my-2"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+      </div>
 
-      <label>
-        Password:
-        <input
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-
-      <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+      <button class="btn btn-primary my-3" type="submit">
+        {isLoading ? "Loading..." : "Login"}
+      </button>
 
       {errors.map((error) => (
         <h1 key={error}>{error}</h1>

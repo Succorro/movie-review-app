@@ -36,67 +36,75 @@ function SignUpForm({ onLogin }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          id="username"
-          autoComplete="off"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
+    <form class="" onSubmit={handleSubmit}>
+      <div class="form-input d-flex align-items-center row row-cols-1 bg-body-tertiary ">
+        <label>
+          Username:
+          <input
+            class="form-control my-2"
+            type="text"
+            id="username"
+            autoComplete="off"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
 
-      <label>
-        Password:
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-        />
-      </label>
+        <label>
+          Password:
+          <input
+            class="form-control my-2"
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+          />
+        </label>
 
-      <label>
-        Password Confirmation:
-        <input
-          type="password"
-          id="password_confirmation"
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
-          autoComplete="current-password"
-        />
-      </label>
+        <label>
+          Password Confirmation:
+          <input
+            class="form-control my-2"
+            type="password"
+            id="password_confirmation"
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            autoComplete="current-password"
+          />
+        </label>
 
-      <label>
-        Profile Image:
-        <input
-          type="text"
-          id="image"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-      </label>
+        <label>
+          Profile Image:
+          <input
+            class="form-control my-2"
+            type="text"
+            id="image"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+        </label>
 
-      <label>
-        {" "}
-        Profile Information:
-        <textarea
-          style={{ maxHeight: "20px" }}
-          rows="3"
-          id="profileInformation"
-          value={profileInformation}
-          onChange={(e) => setprofileInformation(e.target.value)}
-        />
-      </label>
+        {/* <label>
+          {" "}
+          Profile Information:
+          <textarea
+            style={{ maxHeight: "20px" }}
+            rows="3"
+            id="profileInformation"
+            value={profileInformation}
+            onChange={(e) => setprofileInformation(e.target.value)}
+          />
+        </label> */}
 
-      <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
+        <button class="btn btn-primary my-3" type="submit">
+          {isLoading ? "Loading..." : "Sign Up"}
+        </button>
 
-      {errors.map((error) => (
-        <h1 key={error}>{error}</h1>
-      ))}
+        {errors.map((error) => (
+          <h1 key={error}>{error}</h1>
+        ))}
+      </div>
     </form>
   );
 }

@@ -13,13 +13,25 @@ import Contact from "./pages/Contact";
 function App() {
   const [user, setUser] = useState(null);
   const [movies, setMovies] = useState(null);
+  const [popularMovies, setPopularMovies] = useState(null);
 
   useEffect(() => {
-    // auto-login
+    // all-movies
     fetch("/movies").then((r) => {
       if (r.ok) {
         r.json().then((movies) => {
           setMovies(movies);
+        });
+      }
+    });
+  }, []);
+  useEffect(() => {
+    // popular-movies
+    fetch("/popular").then((r) => {
+      if (r.ok) {
+        r.json().then((movies) => {
+          console.log(movies);
+          setPopularMovies(movies);
         });
       }
     });
@@ -34,7 +46,8 @@ function App() {
       }
     });
   }, []);
-  if (!movies) return "loading...";
+
+  if (!movies || !popularMovies) return "loading...";
   if (!user) return <Login onLogin={setUser} />;
   function findMovie(id) {
     return movies.filter((movie) => movie.id === id);
@@ -106,7 +119,7 @@ function App() {
             <Contact />
           </Route>
           <Route path="/">
-            <Home />
+            <Home popularMovies={popularMovies} />
           </Route>
         </Switch>
       </div>

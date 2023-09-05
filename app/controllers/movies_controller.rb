@@ -4,11 +4,15 @@ class MoviesController < ApplicationController
     def index
     render json: Movie.all, include: ['reviews', 'reviews.user'],  status: :ok
     end
+
     def show
     movie = find_movie
     render json: movie, status: :ok 
     end
-
+    def popular 
+        popular = Movie.trending_movies
+        render json: popular, status: :ok 
+    end 
 #   def create
 #     @ = .new(params[:])
 #   end

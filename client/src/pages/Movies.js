@@ -4,7 +4,7 @@ function Movies({ movies }) {
   return (
     <div>
       All Movies
-      <MoviesList movies={movies}></MoviesList>
+      <MoviesList movies={movies} />
     </div>
   );
 }

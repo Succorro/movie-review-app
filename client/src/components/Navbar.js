@@ -41,6 +41,7 @@ function Navbar({ user, setUser }) {
         </Link>
       </ul>
       <ul class="nav">
+        {/* <SearchIcon size={24} /> */}
         <Link class="navbar-brand px-3" to="/profile">
           <img
             class="img-fluid rounded float-end mt-1"

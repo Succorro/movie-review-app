@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  # Review routes 
   patch '/reviews/:id', to: 'reviews#update'
   resources :reviews
-  resources :movies, only: [:create, :index, :show]
 
+  # Movie routes 
+  resources :movies, only: [:create, :index, :show]
+  get '/popular', to: 'movies#popular'
   # User controller routes 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
