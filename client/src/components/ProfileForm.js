@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../App";
 
-function ProfileForm({ setShowProfile, user, onUpdate }) {
-  const { id, username, image, profile_information } = user;
+function ProfileForm({ setShowProfile, onUpdate }) {
+  const { userData } = useContext(UserContext);
+  const { id, username, image, profile_information } = userData;
   const [userName, setUserName] = useState(username);
-  //   const [password, setPassword] = useState("");
-  //   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [img, setImg] = useState(image);
   const [profileInformation, setprofileInformation] =
     useState(profile_information);
@@ -19,7 +19,6 @@ function ProfileForm({ setShowProfile, user, onUpdate }) {
       image: img,
       profile_information: profileInformation,
     };
-    // onUpdate(body);
     fetch(`/users/${id}`, {
       method: "PATCH",
       headers: {
@@ -27,7 +26,6 @@ function ProfileForm({ setShowProfile, user, onUpdate }) {
       },
       body: JSON.stringify(body),
     }).then((r) => {
-      //   setIsLoading(false);
       if (r.ok) {
         setShowProfile(true);
         r.json().then((user) => onUpdate(user));
@@ -40,30 +38,6 @@ function ProfileForm({ setShowProfile, user, onUpdate }) {
   return (
     <form class="form" onSubmit={handleSubmit}>
       <div class="form-input align-items-center container">
-        {/* <label>
-          Password:
-          <input
-            class="form-control my-2"
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
-          />
-        </label> */}
-
-        {/* <label>
-          Password Confirmation:
-          <input
-            class="form-control my-2"
-            type="password"
-            id="password_confirmation"
-            value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-            autoComplete="current-password"
-          />
-        </label> */}
-
         <div class="card shadow-sm m-5 p-5 d-flex ">
           <div class="card-body w-30">
             <label>

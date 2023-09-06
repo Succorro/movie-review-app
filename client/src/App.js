@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Movies from "./pages/Movies";
@@ -10,8 +10,10 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
+export const UserContext = createContext(null);
+
 function App() {
-  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [movies, setMovies] = useState(null);
   const [popularMovies, setPopularMovies] = useState(null);
 
@@ -42,13 +44,13 @@ function App() {
 
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => setUserData(user));
       }
     });
   }, []);
 
   if (!movies || !popularMovies) return "loading...";
-  if (!user) return <Login onLogin={setUser} />;
+  if (!userData) return <Login onLogin={setUserData} />;
   function findMovie(id) {
     return movies.filter((movie) => movie.id === id);
   }
@@ -94,8 +96,8 @@ function App() {
   function onUpdateUser(userInfo) {
     const { username, image, profile_information } = userInfo;
     console.log(userInfo);
-    setUser({
-      ...user,
+    setUserData({
+      ...userData,
       username: username,
       image: image,
       profile_information: profile_information,
@@ -104,22 +106,26 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar user={user} setUser={setUser} />
+        <Navbar userImg={userData.image} setUser={setUserData} />
         <Switch>
           <Route path="/movies/:id">
-            <Movie
-              userId={user.id}
-              movies={movies}
-              onCreateReview={onCreateReview}
-              onDeleteReview={onDeleteReview}
-              onUpdateReview={onUpdateReview}
-            />
+            <UserContext.Provider value={{ userData }}>
+              <Movie
+                // userId={user.id}
+                movies={movies}
+                onCreateReview={onCreateReview}
+                onDeleteReview={onDeleteReview}
+                onUpdateReview={onUpdateReview}
+              />
+            </UserContext.Provider>
           </Route>
           <Route path="/movies">
             <Movies movies={movies} />
           </Route>
           <Route path="/profile">
-            <Profile onUpdate={onUpdateUser} user={user} />
+            <UserContext.Provider value={{ userData }}>
+              <Profile onUpdate={onUpdateUser} />
+            </UserContext.Provider>
           </Route>
           <Route path="/about">
             <About />

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function Movie({
   movies,
-  userId,
+
   onCreateReview,
   onDeleteReview,
   onUpdateReview,
@@ -48,19 +48,19 @@ function Movie({
         <ReviewList
           reviews={reviews}
           onDeleteReview={onDeleteReview}
-          userId={userId}
           movieId={movie.id}
           onUpdateReview={onUpdateReview}
         />
         {showForm ? (
           <ReviewForm
             setShowForm={setShowForm}
-            userId={userId}
             movieId={movie.id}
             onCreateReview={onCreateReview}
           />
         ) : (
-          <button onClick={() => setShowForm(true)}>Leave a Review</button>
+          <button className="btn btn-warning" onClick={() => setShowForm(true)}>
+            Leave a Review
+          </button>
         )}
       </div>
     </div>

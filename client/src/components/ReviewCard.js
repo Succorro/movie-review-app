@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Rating } from "@mui/material";
 import ReviewFormUpdate from "./ReviewFormUpdate";
+import { UserContext } from "../App";
 
-function ReviewCard({
-  reviewData,
-  userId,
-  movieId,
-  onDeleteReview,
-  onUpdateReview,
-}) {
+function ReviewCard({ reviewData, movieId, onDeleteReview, onUpdateReview }) {
   const { id, review, rating, user } = reviewData;
   const [showUpdate, setShowUpdate] = useState(false);
+  const { userData } = useContext(UserContext);
 
   const displayReview = (
     <div className=" d-flex gap-3 " style={{ maxHeight: "100px" }}>
@@ -30,7 +26,7 @@ function ReviewCard({
     });
     onDeleteReview(deletedReview, movieId);
   }
-  if (user.id === userId)
+  if (user.id === userData.id)
     return (
       <>
         {" "}
@@ -82,7 +78,7 @@ function ReviewCard({
     <div className="list-group">
       {" "}
       <div
-        className="list-group-item"
+        className="list-group-item "
         style={{ width: "300px", height: "150px" }}
       >
         {displayReview}

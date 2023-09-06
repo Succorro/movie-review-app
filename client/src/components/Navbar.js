@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar({ user, setUser }) {
+function Navbar({ userImg, setUser }) {
   function handleLogoutClick() {
     fetch("/logout", {
       method: "DELETE",
@@ -46,7 +46,7 @@ function Navbar({ user, setUser }) {
           <img
             className="img-fluid rounded float-end mt-1"
             width="30"
-            src={user.image}
+            src={userImg}
             alt="User"
           />
         </Link>

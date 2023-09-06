@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../App";
 
-function ProfileInfo({ user, setShowProfile }) {
-  const { username, image, profile_information } = user;
+function ProfileInfo({ setShowProfile }) {
+  const { userData } = useContext(UserContext);
+  const { username, image, profile_information } = userData;
   return (
-    <div class="container d-flex col-5">
+    <div class="container d-flex col-5 ">
       <div class="card shadow-sm m-5 p-5 " style={{ maxWidth: "400px" }}>
         <div class="card-body ">
           <img
@@ -15,7 +17,7 @@ function ProfileInfo({ user, setShowProfile }) {
           <h1>{username}</h1>
         </div>
         <div class="card-body ">
-          <h1>Bio</h1>
+          <h1>Bio:</h1>
           <p class="card-text">{profile_information}</p>
         </div>
         <button

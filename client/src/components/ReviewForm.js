@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Rating from "@mui/material/Rating/Rating";
+import { UserContext } from "../App";
 
-function ReviewForm({ setShowForm, movieId, userId, onCreateReview }) {
+function ReviewForm({ setShowForm, movieId, onCreateReview }) {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [errors, setErrors] = useState([]);
+  const { userData } = useContext(UserContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,7 +18,7 @@ function ReviewForm({ setShowForm, movieId, userId, onCreateReview }) {
       body: JSON.stringify({
         review: review,
         rating: rating,
-        user_id: userId,
+        user_id: userData.id,
         movie_id: movieId,
       }),
     }).then((r) => {
