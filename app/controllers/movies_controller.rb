@@ -13,6 +13,7 @@ class MoviesController < ApplicationController
         popular = Movie.trending_movies
         render json: popular, status: :ok 
     end 
+    
 #   def create
 #     @ = .new(params[:])
 #   end

@@ -13,45 +13,45 @@ function Navbar({ user, setUser }) {
   }
 
   return (
-    <div class="container d-flex flex-wrap border-bottom mt-3 align-items-center">
-      <ul class="nav me-auto p-20">
+    <div className="container d-flex flex-wrap border-bottom mt-3 align-items-center">
+      <ul className="nav me-auto p-20">
         <Link
-          class="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
+          className="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
           to="/"
         >
           Home
         </Link>
         <Link
-          class="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
+          className="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
           to="/movies"
         >
           Movies
         </Link>
         <Link
-          class="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
+          className="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
           to="/about"
         >
           About
         </Link>
         <Link
-          class="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
+          className="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
           to="/contact"
         >
           Contact Us
         </Link>
       </ul>
-      <ul class="nav">
+      <ul className="nav">
         {/* <SearchIcon size={24} /> */}
-        <Link class="navbar-brand px-3" to="/profile">
+        <Link className="navbar-brand px-3" to="/profile">
           <img
-            class="img-fluid rounded float-end mt-1"
+            className="img-fluid rounded float-end mt-1"
             width="30"
             src={user.image}
             alt="User"
           />
         </Link>
         <button
-          class="btn btn-outline-primary px-1 align-middle mb-2"
+          className="btn btn-outline-primary px-1 align-middle mb-2"
           width="30"
           onClick={handleLogoutClick}
         >

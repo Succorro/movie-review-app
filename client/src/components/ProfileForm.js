@@ -104,8 +104,15 @@ function ProfileForm({ setShowProfile, user, onUpdate }) {
               />
             </label>
           </div>
-          <button class="btn btn-primary my-3" type="submit">
+          <button
+            class="btn btn-primary my-3"
+            style={{ maxWidth: "200px", alignSelf: "center" }}
+            type="submit"
+          >
             Edit Profile
+          </button>
+          <button class="btn" onClick={() => setShowProfile(true)}>
+            Cancel
           </button>
           {errors.map((error) => (
             <p key={error}>{error}</p>

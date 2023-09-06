@@ -8,10 +8,14 @@ function MovieCard({ movie }) {
   }
   const { id, title, genre } = movie;
   return (
-    <div class="card text-bg-light m-2" key={id} onClick={() => movieClick(id)}>
-      <div class="card-body">
-        <h4 class="card-title">{title}</h4>
-        <p class="card-text">{genre} film</p>
+    <div
+      className="card text-bg-light m-2"
+      key={id}
+      onClick={() => movieClick(id)}
+    >
+      <div className="card-body">
+        <h4 className="card-title">{title}</h4>
+        <p className="card-text">{genre} film</p>
       </div>
     </div>
   );

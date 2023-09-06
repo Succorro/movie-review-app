@@ -27,17 +27,24 @@ function Movie({
 
   return (
     <div>
-      Individual Movie
-      <h1>{title}</h1>
-      <h4 class="card-text">Release Date:</h4>
-      <p>{release_year}</p>
-      <h4 class="card-text">Genre:</h4>
-      <p>{genre} film</p>
-      <h4 class="card-text">Director:</h4>
-      <p>{director}</p>
-      <h4 class="card-text">Plot:</h4>
-      <p>{description}</p>
-      <div>
+      <h1 className="my-3">{title}</h1>
+      <div className="card-group d-flex">
+        <div className="card m-3 p-1">
+          <h4 className="card-text">Release Date:</h4>
+          <p>{release_year}</p>
+          <h4 className="card-text">Genre:</h4>
+          <p>{genre} film</p>
+          <h4 className="card-text">Director:</h4>
+          <p>{director}</p>
+        </div>
+        <div className="card m-3 p-1">
+          <h4 className="card-title">Plot:</h4>
+          <p className="card-text" style={{ maxWidth: "500px" }}>
+            {description}
+          </p>
+        </div>
+      </div>
+      <div className="container d-inline-block">
         <ReviewList
           reviews={reviews}
           onDeleteReview={onDeleteReview}

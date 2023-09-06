@@ -34,30 +34,36 @@ function ReviewFormUpdate({
     });
   }
   return (
-    <div>
-      ReviewForm
-      <form onSubmit={handleSubmit}>
+    <div className="list-group card mt-0  pt-1">
+      <form
+        className="form mt-0 pt-1 align-self-center"
+        onSubmit={handleSubmit}
+      >
         {" "}
-        <label>
-          Comments
-          <textarea
-            type="text"
-            name="review"
-            value={newReview}
-            onChange={(e) => setReview(e.target.value)}
-          />
-        </label>
-        <label>
-          Rating
-          <Rating
-            name="review"
-            value={newRating}
-            onChange={(e, newValue) => {
-              setRating(newValue);
-            }}
-          />
-        </label>
-        <button type="submit">Update Review</button>
+        <div className="d-flex container align-items-center">
+          <label className="form-input">
+            Rating:
+            <Rating
+              name="review"
+              value={newRating}
+              onChange={(e, newValue) => {
+                setRating(newValue);
+              }}
+            />
+          </label>
+          <label className="form-input">
+            Comments:
+            <textarea
+              type="text"
+              name="review"
+              value={newReview}
+              onChange={(e) => setReview(e.target.value)}
+            />
+          </label>
+        </div>
+        <button type="submit" className="btn btn-secondary mb-1">
+          Update Review
+        </button>
         {errors.map((error) => (
           <h1 key={error}>{error}</h1>
         ))}

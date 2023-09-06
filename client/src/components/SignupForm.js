@@ -4,8 +4,6 @@ function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [image, setImage] = useState("");
-  // const [profileInformation, setprofileInformation] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,8 +20,6 @@ function SignUpForm({ onLogin }) {
         username,
         password,
         password_confirmation: passwordConfirmation,
-        image: image,
-        // profile_information: profileInformation,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -73,36 +69,14 @@ function SignUpForm({ onLogin }) {
             autoComplete="current-password"
           />
         </label>
-
-        <label>
-          Profile Image:
-          <input
-            className="form-control my-2"
-            type="text"
-            id="image"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-        </label>
-
-        {/* <label>
-          {" "}
-          Profile Information:
-          <textarea
-            style={{ maxHeight: "20px" }}
-            rows="3"
-            id="profileInformation"
-            value={profileInformation}
-            onChange={(e) => setprofileInformation(e.target.value)}
-          />
-        </label> */}
-
         <button className="btn btn-primary my-3" type="submit">
           {isLoading ? "Loading..." : "Sign Up"}
         </button>
 
         {errors.map((error) => (
-          <h1 key={error}>{error}</h1>
+          <h1 className="text-danger" key={error}>
+            {error}!
+          </h1>
         ))}
       </div>
     </form>

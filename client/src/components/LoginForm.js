@@ -42,7 +42,7 @@ function LoginForm({ onLogin }) {
       </div>
       <div className="form-input">
         <label>
-          Password:
+          New Password:
           <input
             className="form-control my-2"
             type="password"
@@ -59,7 +59,9 @@ function LoginForm({ onLogin }) {
       </button>
 
       {errors.map((error) => (
-        <h1 key={error}>{error}</h1>
+        <h1 className="text-danger" key={error}>
+          {error}
+        </h1>
       ))}
     </form>
   );
