@@ -91,7 +91,16 @@ function App() {
     });
     setMovies(filteredMovies);
   }
-
+  function onUpdateUser(userInfo) {
+    const { username, image, profile_information } = userInfo;
+    console.log(userInfo);
+    setUser({
+      ...user,
+      username: username,
+      image: image,
+      profile_information: profile_information,
+    });
+  }
   return (
     <BrowserRouter>
       <div className="App">
@@ -110,7 +119,7 @@ function App() {
             <Movies movies={movies} />
           </Route>
           <Route path="/profile">
-            <Profile user={user} />
+            <Profile onUpdate={onUpdateUser} user={user} />
           </Route>
           <Route path="/about">
             <About />

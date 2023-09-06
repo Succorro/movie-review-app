@@ -26,12 +26,12 @@ function LoginForm({ onLogin }) {
   }
 
   return (
-    <form class="align-items-center " onSubmit={handleSubmit}>
-      <div class="form-input ">
+    <form className="align-items-center " onSubmit={handleSubmit}>
+      <div className="form-input ">
         <label>
           Username:
           <input
-            class="form-control my-2"
+            className="form-control my-2"
             type="text"
             id="username"
             autoComplete="off"
@@ -40,11 +40,11 @@ function LoginForm({ onLogin }) {
           />
         </label>
       </div>
-      <div class="form-input">
+      <div className="form-input">
         <label>
           Password:
           <input
-            class="form-control my-2"
+            className="form-control my-2"
             type="password"
             id="password"
             autoComplete="current-password"
@@ -54,7 +54,7 @@ function LoginForm({ onLogin }) {
         </label>
       </div>
 
-      <button class="btn btn-primary my-3" type="submit">
+      <button className="btn btn-primary my-3" type="submit">
         {isLoading ? "Loading..." : "Login"}
       </button>
 

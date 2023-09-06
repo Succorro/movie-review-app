@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # User controller routes 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
-  resources :user, only: [:update]
+  patch "/users/:id", to: "users#update"
  
   # Sessions Controller routes 
   post "/login", to: "sessions#create"

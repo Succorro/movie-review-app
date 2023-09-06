@@ -5,7 +5,7 @@ function SignUpForm({ onLogin }) {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [image, setImage] = useState("");
-  const [profileInformation, setprofileInformation] = useState("");
+  // const [profileInformation, setprofileInformation] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,7 +23,7 @@ function SignUpForm({ onLogin }) {
         password,
         password_confirmation: passwordConfirmation,
         image: image,
-        profile_information: profileInformation,
+        // profile_information: profileInformation,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -36,12 +36,12 @@ function SignUpForm({ onLogin }) {
   }
 
   return (
-    <form class="" onSubmit={handleSubmit}>
-      <div class="form-input d-flex align-items-center row row-cols-1 bg-body-tertiary ">
+    <form className="container" onSubmit={handleSubmit}>
+      <div className="form-input d-flex align-items-center row row-cols-1 bg-body-tertiary ">
         <label>
           Username:
           <input
-            class="form-control my-2"
+            className="form-control my-2"
             type="text"
             id="username"
             autoComplete="off"
@@ -53,7 +53,7 @@ function SignUpForm({ onLogin }) {
         <label>
           Password:
           <input
-            class="form-control my-2"
+            className="form-control my-2"
             type="password"
             id="password"
             value={password}
@@ -65,7 +65,7 @@ function SignUpForm({ onLogin }) {
         <label>
           Password Confirmation:
           <input
-            class="form-control my-2"
+            className="form-control my-2"
             type="password"
             id="password_confirmation"
             value={passwordConfirmation}
@@ -77,7 +77,7 @@ function SignUpForm({ onLogin }) {
         <label>
           Profile Image:
           <input
-            class="form-control my-2"
+            className="form-control my-2"
             type="text"
             id="image"
             value={image}
@@ -97,7 +97,7 @@ function SignUpForm({ onLogin }) {
           />
         </label> */}
 
-        <button class="btn btn-primary my-3" type="submit">
+        <button className="btn btn-primary my-3" type="submit">
           {isLoading ? "Loading..." : "Sign Up"}
         </button>
 
