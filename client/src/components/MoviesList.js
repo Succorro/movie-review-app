@@ -1,6 +1,5 @@
 import React from "react";
 import MovieCard from "../components/MovieCard";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 function MoviesList({ movies }) {
   return (
     <>
@@ -13,7 +12,6 @@ function MoviesList({ movies }) {
           );
         })}
       </div>
-      <Link to="/movies/new"> Are we missing a Movie? </Link>
     </>
   );
 }

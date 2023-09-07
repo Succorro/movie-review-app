@@ -41,8 +41,8 @@ function ReviewFormUpdate({
       >
         {" "}
         <div className="d-flex container align-items-center">
-          <label className="form-input">
-            Rating:
+          <label className="form-input p-2">
+            <h6>Rating:</h6>
             <Rating
               name="review"
               value={newRating}
@@ -51,8 +51,8 @@ function ReviewFormUpdate({
               }}
             />
           </label>
-          <label className="form-input">
-            Comments:
+          <label className="form-input p-2">
+            <h6>Comment:</h6>
             <textarea
               type="text"
               name="review"
@@ -68,6 +68,15 @@ function ReviewFormUpdate({
           <h1 key={error}>{error}</h1>
         ))}
       </form>
+      <div className="d-flex justify-content-center">
+        <button
+          className="btn btn-danger mb-1"
+          type="click"
+          onClick={() => setShowUpdate(false)}
+        >
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }

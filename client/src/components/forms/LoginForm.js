@@ -42,7 +42,7 @@ function LoginForm({ onLogin }) {
       </div>
       <div className="form-input">
         <label>
-          New Password:
+          Password:
           <input
             className="form-control my-2"
             type="password"

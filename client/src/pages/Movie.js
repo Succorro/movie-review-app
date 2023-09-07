@@ -51,18 +51,25 @@ function Movie({
           movieId={movie.id}
           onUpdateReview={onUpdateReview}
         />
-        {showForm ? (
+      </div>
+      {showForm ? (
+        <div className="container d-block mb-5">
           <ReviewForm
             setShowForm={setShowForm}
             movieId={movie.id}
             onCreateReview={onCreateReview}
           />
-        ) : (
-          <button className="btn btn-warning" onClick={() => setShowForm(true)}>
+        </div>
+      ) : (
+        <div className="d-flex justify-content-center">
+          <button
+            className="btn btn-warning d-block "
+            onClick={() => setShowForm(true)}
+          >
             Leave a Review
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
