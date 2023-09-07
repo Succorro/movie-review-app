@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReviewList from "../components/ReviewList";
-import ReviewForm from "../components/ReviewForm";
+import ReviewForm from "../components/forms/ReviewForm";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function Movie({

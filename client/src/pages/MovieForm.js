@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Input from "../components/Input";
 
 function MovieForm({ onCreateMovie }) {
   const [title, setTitle] = useState("");
@@ -41,46 +42,20 @@ function MovieForm({ onCreateMovie }) {
       <form className="container border" onSubmit={handleSubmit}>
         {" "}
         <div className="form-input d-flex row row-cols-1 justify-content-center ">
-          <label>
-            Title:
-            <input
-              className="form-control my-2"
-              type=""
-              name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </label>
-          <label>
-            Genre:
-            <input
-              className="form-control my-2"
-              type="text"
-              name="genre"
-              value={genre}
-              onChange={(e) => setGenre(e.target.value)}
-            />
-          </label>
-          <label>
-            Director:
-            <input
-              className="form-control my-2"
-              type="text"
-              name="director"
-              value={director}
-              onChange={(e) => setDirector(e.target.value)}
-            />
-          </label>
-          <label>
-            Release Year:
-            <input
-              className="form-control my-2"
-              type="date"
-              name="release_year"
-              value={releaseYear}
-              onChange={(e) => setReleaseYear(e.target.value)}
-            />
-          </label>
+          <Input type={"text"} name={"Title"} value={title} setter={setTitle} />
+          <Input type={"text"} name={"Genre"} value={genre} setter={setGenre} />
+          <Input
+            type={"text"}
+            name={"Director"}
+            value={director}
+            setter={setDirector}
+          />
+          <Input
+            type={"date"}
+            name={"Release Year"}
+            value={releaseYear}
+            setter={setReleaseYear}
+          />
           <label>
             Description:
             <textarea

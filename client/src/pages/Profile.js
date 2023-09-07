@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProfileInfo from "../components/ProfileInfo";
-import ProfileForm from "../components/ProfileForm";
+import ProfileForm from "../components/forms/ProfileForm";
 
 function Profile({ onUpdate }) {
   const [showProfile, setShowProfile] = useState(true);

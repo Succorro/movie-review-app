@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Rating from "@mui/material/Rating/Rating";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 
 function ReviewForm({ setShowForm, movieId, onCreateReview }) {
   const [review, setReview] = useState("");

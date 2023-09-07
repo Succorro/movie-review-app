@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 
 function ProfileForm({ setShowProfile, onUpdate }) {
   const { userData } = useContext(UserContext);

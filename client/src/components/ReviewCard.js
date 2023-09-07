@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Rating } from "@mui/material";
-import ReviewFormUpdate from "./ReviewFormUpdate";
+import ReviewFormUpdate from "./forms/ReviewFormUpdate";
 import { UserContext } from "../App";
 
 function ReviewCard({ reviewData, movieId, onDeleteReview, onUpdateReview }) {
