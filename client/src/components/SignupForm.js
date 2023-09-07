@@ -33,7 +33,7 @@ function SignUpForm({ onLogin }) {
 
   return (
     <form className="container" onSubmit={handleSubmit}>
-      <div className="form-input d-flex align-items-center row row-cols-1 bg-body-tertiary ">
+      <div className="form-input d-flex align-items-center row row-cols-1 ">
         <label>
           Username:
           <input

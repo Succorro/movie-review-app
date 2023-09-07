@@ -2,9 +2,9 @@ class Movie < ApplicationRecord
     has_many :reviews
     has_many :users, through: :reviews
 
-    validates :title, :genre, :director, presence: true
+    validates :title, :genre, :director,:release_year, presence: true
     validates :description, length: {minimum: 50}
-    validates :release_year, format: {with: /\A(\w+(?:[\s-]*\w+)?)(?:,\s*\g<1>)*\z/, message: "enter date in dd/mm/yyyy"}
+    validates :title, uniqueness: true 
 
     def self.trending_movies
         # SQL Query to find trending movies, select movies and their associated reviews count

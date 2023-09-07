@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import MovieForm from "./pages/MovieForm";
 
 export const UserContext = createContext(null);
 
@@ -49,11 +50,13 @@ function App() {
     });
   }, []);
 
-  if (!movies || !popularMovies) return "loading...";
+  if (!movies || !popularMovies) return <div id="loader"></div>;
   if (!userData) return <Login onLogin={setUserData} />;
+
   function findMovie(id) {
     return movies.filter((movie) => movie.id === id);
   }
+
   function onCreateReview(review, movieId) {
     // iterate through movies to find reviews list for movie then add new review using spread operator
     const currentMovie = findMovie(movieId)[0];
@@ -93,6 +96,7 @@ function App() {
     });
     setMovies(filteredMovies);
   }
+
   function onUpdateUser(userInfo) {
     const { username, image, profile_information } = userInfo;
     console.log(userInfo);
@@ -103,15 +107,24 @@ function App() {
       profile_information: profile_information,
     });
   }
+
+  function onCreateMovie(movieData) {
+    const newMovie = [...movies, movieData];
+    setMovies(newMovie);
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
         <Navbar userImg={userData.image} setUser={setUserData} />
         <Switch>
+          <Route path="/movies/new">
+            {" "}
+            <MovieForm onCreateMovie={onCreateMovie} />
+          </Route>
           <Route path="/movies/:id">
             <UserContext.Provider value={{ userData }}>
               <Movie
-                // userId={user.id}
                 movies={movies}
                 onCreateReview={onCreateReview}
                 onDeleteReview={onDeleteReview}
