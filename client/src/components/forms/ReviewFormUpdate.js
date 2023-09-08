@@ -34,49 +34,47 @@ function ReviewFormUpdate({
     });
   }
   return (
-    <div className="list-group card mt-0  pt-1">
+    <div className="card m-3 " style={{ width: "300px", height: "150px" }}>
       <form
-        className="form mt-0 pt-1 align-self-center"
+        className="form-input row row-cols-1 justify-content-center "
         onSubmit={handleSubmit}
       >
         {" "}
-        <div className="d-flex container align-items-center">
-          <label className="form-input p-2">
-            <h6>Rating:</h6>
-            <Rating
-              name="review"
-              value={newRating}
-              onChange={(e, newValue) => {
-                setRating(newValue);
-              }}
-            />
-          </label>
-          <label className="form-input p-2">
-            <h6>Comment:</h6>
-            <textarea
-              type="text"
-              name="review"
-              value={newReview}
-              onChange={(e) => setReview(e.target.value)}
-            />
-          </label>
+        <label className="d-grid" style={{ width: "150px" }}>
+          <p className="mt-1">Rating:</p>
+          <Rating
+            name="review"
+            value={newRating}
+            onChange={(e, newValue) => {
+              setRating(newValue);
+            }}
+          />
+        </label>
+        <label className="d-grid" style={{ width: "150px" }}>
+          <p className="mt-1">Comment:</p>
+          <textarea
+            type="text"
+            name="review"
+            value={newReview}
+            onChange={(e) => setReview(e.target.value)}
+          />
+        </label>
+        <div className="d-flex justify-content-center">
+          <button
+            className="btn btn-danger mt-2  m-1"
+            type="click"
+            onClick={() => setShowUpdate(false)}
+          >
+            Cancel
+          </button>
+          <button type="submit" className="btn btn-secondary mt-2 m-1">
+            Update Review
+          </button>
         </div>
-        <button type="submit" className="btn btn-secondary mb-1">
-          Update Review
-        </button>
         {errors.map((error) => (
           <h1 key={error}>{error}</h1>
         ))}
       </form>
-      <div className="d-flex justify-content-center">
-        <button
-          className="btn btn-danger mb-1"
-          type="click"
-          onClick={() => setShowUpdate(false)}
-        >
-          Cancel
-        </button>
-      </div>
     </div>
   );
 }

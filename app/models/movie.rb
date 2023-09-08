@@ -13,6 +13,6 @@ class Movie < ApplicationRecord
              .where('reviews.created_at >= ?', 1.week.ago) # filtering the reviews by a weekly basis
              .group('movies.id') # grouping the results by movie id  
              .order('review_count DESC') # ordering the results in descending order by review count 
-             .limit(5) #limit 5 to only display a few for the query 
+             .limit(6) #limit 6 to only display a few for the query 
         end
 end

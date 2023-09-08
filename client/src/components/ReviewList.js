@@ -5,7 +5,7 @@ function ReviewList({ reviews, onDeleteReview, movieId, onUpdateReview }) {
   return (
     <div className="row">
       {reviews.map((review) => (
-        <div className="col-md-5">
+        <div className="col-md-4">
           <ReviewCard
             key={review.id}
             onDeleteReview={onDeleteReview}

@@ -9,7 +9,7 @@ function ReviewCard({ reviewData, movieId, onDeleteReview, onUpdateReview }) {
   const { userData } = useContext(UserContext);
 
   const displayReview = (
-    <div className=" d-flex gap-3 " style={{ maxHeight: "100px" }}>
+    <div className="d-inline-block mt-1" style={{ maxHeight: "100px" }}>
       <div>
         <h3>{user.username}</h3>
         <Rating name="read-only" value={rating} readOnly />
@@ -40,49 +40,35 @@ function ReviewCard({ reviewData, movieId, onDeleteReview, onUpdateReview }) {
             id={id}
           />
         ) : (
-          <div className="list-group">
+          <div
+            className="card m-3 d-grid"
+            style={{ width: "300px", height: "200px" }}
+          >
+            {displayReview}
             <div
-              className="list-group-item"
-              style={{ width: "300px", height: "150px" }}
+              className="d-flex justify-content-center"
+              style={{ maxHeight: "50px" }}
             >
-              {displayReview}
-              <div
-                className="d-flex"
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  marginBottom: "10px",
-                }}
+              <button
+                className="btn btn-primary  m-1"
+                onClick={() => setShowUpdate(true)}
               >
-                <button
-                  className="btn btn-primary p-1 "
-                  style={{ maxHeight: "35px" }}
-                  onClick={() => setShowUpdate(true)}
-                >
-                  Edit Review
-                </button>
-                <button
-                  className="btn btn-danger p-1 ml-1"
-                  style={{ maxHeight: "35px" }}
-                  onClick={() => handleDeleteClick(reviewData)}
-                >
-                  Delete Review
-                </button>
-              </div>
+                Edit Review
+              </button>
+              <button
+                className="btn btn-danger m-1"
+                onClick={() => handleDeleteClick(reviewData)}
+              >
+                Delete Review
+              </button>
             </div>
           </div>
         )}
       </>
     );
   return (
-    <div className="card text-bg-light m-2">
-      {" "}
-      <div
-        className="list-group-item "
-        style={{ width: "300px", height: "150px" }}
-      >
-        {displayReview}
-      </div>
+    <div className="card m-3" style={{ width: "300px", height: "200px" }}>
+      {displayReview}
     </div>
   );
 }
