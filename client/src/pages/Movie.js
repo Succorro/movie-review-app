@@ -26,10 +26,10 @@ function Movie({
   const { title, release_year, genre, director, description, reviews } = movie;
 
   return (
-    <div>
+    <div className="d-grid m-auto">
       <h1 className="my-3">{title}</h1>
       <div className="card-group d-flex">
-        <div className="card m-3 p-1">
+        <div className="card d-grid p-1 m-3">
           <h4 className="card-text">Release Date:</h4>
           <p>{release_year}</p>
           <h4 className="card-text">Genre:</h4>
@@ -37,21 +37,20 @@ function Movie({
           <h4 className="card-text">Director:</h4>
           <p>{director}</p>
         </div>
-        <div className="card m-3 p-1">
+        <div className="card d-grid p-1 m-3">
           <h4 className="card-title">Plot:</h4>
           <p className="card-text" style={{ maxWidth: "500px" }}>
             {description}
           </p>
         </div>
       </div>
-      <div className="container d-inline-block">
-        <ReviewList
-          reviews={reviews}
-          onDeleteReview={onDeleteReview}
-          movieId={movie.id}
-          onUpdateReview={onUpdateReview}
-        />
-      </div>
+      <h1>Reviews</h1>
+      <ReviewList
+        reviews={reviews}
+        onDeleteReview={onDeleteReview}
+        movieId={movie.id}
+        onUpdateReview={onUpdateReview}
+      />
       {showForm ? (
         <div className="container d-block mb-5">
           <ReviewForm

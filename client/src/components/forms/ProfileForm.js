@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../App";
+import Input from "../Input";
 
 function ProfileForm({ setShowProfile, onUpdate }) {
   const { userData } = useContext(UserContext);
@@ -36,63 +37,47 @@ function ProfileForm({ setShowProfile, onUpdate }) {
   }
 
   return (
-    <form class="form" onSubmit={handleSubmit}>
-      <div class="form-input align-items-center container">
-        <div class="card shadow-sm m-5 p-5 d-flex ">
-          <div class="card-body w-30">
-            <label>
-              Profile Image:
-              <input
-                class="form-control my-2"
-                type="text"
-                id="image"
-                value={img}
-                onChange={(e) => setImg(e.target.value)}
-              />
-            </label>
-          </div>
-          <div class="card-body">
-            {" "}
-            <label>
-              Username:
-              <input
-                class="form-control my-2"
-                type="text"
-                id="username"
-                autoComplete="off"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-              />
-            </label>
-          </div>
-          <div class="card-body ">
-            <label>
-              {" "}
-              Profile Information:
-              <textarea
-                class="form-control my-2"
-                rows="3"
-                id="profileInformation"
-                value={profileInformation}
-                onChange={(e) => setprofileInformation(e.target.value)}
-              />
-            </label>
-          </div>
-          <button
-            class="btn btn-primary my-3"
-            style={{ maxWidth: "200px", alignSelf: "center" }}
-            type="submit"
-          >
-            Edit Profile
-          </button>
-          <button class="btn" onClick={() => setShowProfile(true)}>
-            Cancel
-          </button>
-          {errors.map((error) => (
-            <p key={error}>{error}</p>
-          ))}
-        </div>
-      </div>
+    <form
+      class="form d-grid justify-content-center p-2"
+      onSubmit={handleSubmit}
+    >
+      <Input
+        type={"text"}
+        name={"Profile Image:"}
+        value={img}
+        setter={setImg}
+      />
+      <Input
+        type={"text"}
+        name={"New Username:"}
+        value={userName}
+        setter={setUserName}
+      />
+
+      <label>
+        {" "}
+        Profile Information:
+        <textarea
+          class="form-control my-2"
+          rows="3"
+          id="profileInformation"
+          value={profileInformation}
+          onChange={(e) => setprofileInformation(e.target.value)}
+        />
+      </label>
+      <button
+        class="btn btn-primary my-3"
+        style={{ maxWidth: "200px", alignSelf: "center" }}
+        type="submit"
+      >
+        Edit Profile
+      </button>
+      <button class="btn" onClick={() => setShowProfile(true)}>
+        Cancel
+      </button>
+      {errors.map((error) => (
+        <p key={error}>{error}</p>
+      ))}
     </form>
   );
 }

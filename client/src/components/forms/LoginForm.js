@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Input from "../Input";
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -26,42 +27,28 @@ function LoginForm({ onLogin }) {
   }
 
   return (
-    <form className="align-items-center " onSubmit={handleSubmit}>
-      <div className="form-input ">
-        <label>
-          Username:
-          <input
-            className="form-control my-2"
-            type="text"
-            id="username"
-            autoComplete="off"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-      </div>
-      <div className="form-input">
-        <label>
-          Password:
-          <input
-            className="form-control my-2"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-      </div>
+    <form className="d-grid align-items-center " onSubmit={handleSubmit}>
+      <Input
+        type={"text"}
+        name={"Username:"}
+        value={username}
+        setter={setUsername}
+      />
+      <Input
+        type={"password"}
+        name={"Password:"}
+        value={password}
+        setter={setPassword}
+      />
 
       <button className="btn btn-primary my-3" type="submit">
         {isLoading ? "Loading..." : "Login"}
       </button>
 
       {errors.map((error) => (
-        <h1 className="text-danger" key={error}>
+        <p className="text-danger" key={error}>
           {error}
-        </h1>
+        </p>
       ))}
     </form>
   );

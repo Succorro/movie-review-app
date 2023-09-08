@@ -75,7 +75,7 @@ function ReviewCard({ reviewData, movieId, onDeleteReview, onUpdateReview }) {
       </>
     );
   return (
-    <div className="list-group">
+    <div className="card text-bg-light m-2">
       {" "}
       <div
         className="list-group-item "

@@ -26,7 +26,7 @@ function Login({ onLogin }) {
           </button>
         </main>
       ) : (
-        <main style={{ margin: "10%", marginTop: 0 }}>
+        <main className="m-auto" class="m-auto">
           <SignUpForm onLogin={onLogin} />
           <p class="h3 mb-3 fw-normal" className="h3 mb-3 fw-normal">
             Already have an account?{" "}

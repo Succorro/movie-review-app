@@ -8,9 +8,13 @@ function Profile({ onUpdate }) {
   return (
     <>
       {showProfile ? (
-        <ProfileInfo setShowProfile={setShowProfile} />
+        <main className="container card m-auto" class="container card m-auto">
+          <ProfileInfo setShowProfile={setShowProfile} />
+        </main>
       ) : (
-        <ProfileForm onUpdate={onUpdate} setShowProfile={setShowProfile} />
+        <main className="container card m-auto" class="container card m-auto">
+          <ProfileForm onUpdate={onUpdate} setShowProfile={setShowProfile} />
+        </main>
       )}
     </>
   );

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 function Movies({ movies }) {
   return (
     <div>
-      All Movies
+      <h1>All Movies</h1>
       <MoviesList movies={movies} />
       <Link to="/movies/new"> Are we missing a Movie? </Link>
     </div>

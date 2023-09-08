@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Input from "../Input";
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -32,53 +33,36 @@ function SignUpForm({ onLogin }) {
   }
 
   return (
-    <form className="container" onSubmit={handleSubmit}>
-      <div className="form-input d-flex align-items-center row row-cols-1 ">
-        <label>
-          Username:
-          <input
-            className="form-control my-2"
-            type="text"
-            id="username"
-            autoComplete="off"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
+    <form className="d-grid align-items-center" onSubmit={handleSubmit}>
+      <Input
+        type={"text"}
+        name={"Create Username:"}
+        value={username}
+        setter={setUsername}
+      />
+      <Input
+        type={"password"}
+        name={"Create Password:"}
+        value={password}
+        setter={setPassword}
+      />
 
-        <label>
-          Password:
-          <input
-            className="form-control my-2"
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
-          />
-        </label>
+      <Input
+        type={"password"}
+        name={"Confirm Password:"}
+        value={passwordConfirmation}
+        setter={setPasswordConfirmation}
+      />
 
-        <label>
-          Password Confirmation:
-          <input
-            className="form-control my-2"
-            type="password"
-            id="password_confirmation"
-            value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-            autoComplete="current-password"
-          />
-        </label>
-        <button className="btn btn-primary my-3" type="submit">
-          {isLoading ? "Loading..." : "Sign Up"}
-        </button>
+      <button className="btn btn-primary my-3" type="submit">
+        {isLoading ? "Loading..." : "Sign Up"}
+      </button>
 
-        {errors.map((error) => (
-          <h1 className="text-danger" key={error}>
-            {error}!
-          </h1>
-        ))}
-      </div>
+      {errors.map((error) => (
+        <p className="text-danger" key={error}>
+          {error}!
+        </p>
+      ))}
     </form>
   );
 }
