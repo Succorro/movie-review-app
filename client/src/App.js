@@ -33,7 +33,6 @@ function App() {
     fetch("/popular").then((r) => {
       if (r.ok) {
         r.json().then((movies) => {
-          console.log(movies);
           setPopularMovies(movies);
         });
       }

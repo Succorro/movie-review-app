@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Error from "./Error";
 
 function Navbar({ userImg, setUser }) {
+  const [errors, setErrors] = useState([]);
   function handleLogoutClick() {
     fetch("/logout", {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
         setUser(null);
+      } else {
+        r.json().then((error) => setErrors(error.errors));
       }
     });
   }
@@ -37,7 +41,7 @@ function Navbar({ userImg, setUser }) {
           className="nav px-2 link-opacity-50-hover link-underline link-underline-opacity-0"
           to="/contact"
         >
-          Contact Us
+          Contact
         </Link>
       </ul>
       <ul className="nav">
@@ -57,6 +61,7 @@ function Navbar({ userImg, setUser }) {
           Logout
         </button>
       </ul>
+      <Error errors={errors} />
     </div>
   );
 }

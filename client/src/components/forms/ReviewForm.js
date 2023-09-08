@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Rating from "@mui/material/Rating/Rating";
 import { UserContext } from "../../App";
+import Error from "../Error";
 
 function ReviewForm({ setShowForm, movieId, onCreateReview }) {
   const [review, setReview] = useState("");
@@ -64,9 +65,7 @@ function ReviewForm({ setShowForm, movieId, onCreateReview }) {
         <button className="btn btn-warning mb-1" type="submit">
           Create Review
         </button>
-        {errors.map((error) => (
-          <h1 key={error}>{error}</h1>
-        ))}
+        <Error errors={errors} />
       </form>
       <div className="d-flex justify-content-center">
         <button

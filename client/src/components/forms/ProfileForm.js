@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../App";
 import Input from "../Input";
+import Error from "../Error";
 
 function ProfileForm({ setShowProfile, onUpdate }) {
   const { userData } = useContext(UserContext);
@@ -65,19 +66,16 @@ function ProfileForm({ setShowProfile, onUpdate }) {
           onChange={(e) => setprofileInformation(e.target.value)}
         />
       </label>
-      <button
-        class="btn btn-primary my-3"
-        style={{ maxWidth: "200px", alignSelf: "center" }}
-        type="submit"
-      >
+      <button class="btn btn-primary my-3" type="submit">
         Edit Profile
       </button>
-      <button class="btn" onClick={() => setShowProfile(true)}>
+      <button
+        class="btn btn-outline-danger"
+        onClick={() => setShowProfile(true)}
+      >
         Cancel
       </button>
-      {errors.map((error) => (
-        <p key={error}>{error}</p>
-      ))}
+      <Error errors={errors} />
     </form>
   );
 }

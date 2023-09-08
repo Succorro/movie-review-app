@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Input from "../Input";
+import Error from "../Error";
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -58,11 +59,7 @@ function SignUpForm({ onLogin }) {
         {isLoading ? "Loading..." : "Sign Up"}
       </button>
 
-      {errors.map((error) => (
-        <p className="text-danger" key={error}>
-          {error}!
-        </p>
-      ))}
+      <Error errors={errors} />
     </form>
   );
 }

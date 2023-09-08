@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Input from "../Input";
+import Error from "../Error";
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -25,7 +26,6 @@ function LoginForm({ onLogin }) {
       }
     });
   }
-
   return (
     <form className="d-grid align-items-center " onSubmit={handleSubmit}>
       <Input
@@ -44,12 +44,7 @@ function LoginForm({ onLogin }) {
       <button className="btn btn-primary my-3" type="submit">
         {isLoading ? "Loading..." : "Login"}
       </button>
-
-      {errors.map((error) => (
-        <p className="text-danger" key={error}>
-          {error}
-        </p>
-      ))}
+      <Error errors={errors} />
     </form>
   );
 }

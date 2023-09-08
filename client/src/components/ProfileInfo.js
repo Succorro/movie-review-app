@@ -5,24 +5,24 @@ function ProfileInfo({ setShowProfile }) {
   const { userData } = useContext(UserContext);
   const { username, image, profile_information } = userData;
   return (
-    <div class="d-grid justify-content-center p-2">
-      <div class="card-body ">
+    <div className="d-grid justify-content-center p-2">
+      <div className="card-body ">
         <img
-          class="card-img mx-30"
+          className="card-img mx-30"
           style={{ maxWidth: "200px" }}
           src={image}
           alt="user"
         />
         <h1>{username}</h1>
       </div>
-      <div class="card-body ">
+      <div className="card-body ">
         <h3>Bio:</h3>
-        <p class="card-text">{profile_information}</p>
+        <p className="card-text">{profile_information}</p>
       </div>
       <button
         onClick={() => setShowProfile(false)}
         style={{ alignSelf: "center" }}
-        class="btn btn-primary my-3"
+        className="btn btn-outline-primary my-3"
         type="submit"
       >
         Edit Profile

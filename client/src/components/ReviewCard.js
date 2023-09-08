@@ -14,8 +14,8 @@ function ReviewCard({ reviewData, movieId, onDeleteReview, onUpdateReview }) {
         <h3>{user.username}</h3>
         <Rating name="read-only" value={rating} readOnly />
       </div>
-      <div className="card-text">
-        <p>{review}</p>
+      <div className="card-text ">
+        <div style={{ overflow: "auto", maxHeight: "55px" }}>{review}</div>
       </div>
     </div>
   );

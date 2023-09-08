@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Rating from "@mui/material/Rating/Rating";
+import Error from "../Error";
 
 function ReviewFormUpdate({
   setShowUpdate,
@@ -71,9 +72,7 @@ function ReviewFormUpdate({
             Update Review
           </button>
         </div>
-        {errors.map((error) => (
-          <h1 key={error}>{error}</h1>
-        ))}
+        <Error errors={errors} />
       </form>
     </div>
   );
