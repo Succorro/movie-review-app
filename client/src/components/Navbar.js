@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Error from "./Error";
+import Search from "./Search";
 
-function Navbar({ userImg, setUser }) {
+function Navbar({ userImg, setUser, movies }) {
   const [errors, setErrors] = useState([]);
   function handleLogoutClick() {
     fetch("/logout", {
@@ -45,6 +46,7 @@ function Navbar({ userImg, setUser }) {
         </Link>
       </ul>
       <ul className="nav">
+        <Search movies={movies} />
         <Link className="navbar-brand px-3" to="/profile">
           <img
             className="img-fluid rounded float-end mt-1"

@@ -115,7 +115,11 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar userImg={userData.image} setUser={setUserData} />
+        <Navbar
+          userImg={userData.image}
+          setUser={setUserData}
+          movies={movies}
+        />
         <Switch>
           <Route path="/movies/new">
             {" "}
