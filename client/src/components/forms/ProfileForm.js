@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { UserContext } from "../../App";
+import { Context } from "../../App";
 import Input from "../Input";
 import Error from "../Error";
 
-function ProfileForm({ setShowProfile, onUpdate }) {
-  const { userData } = useContext(UserContext);
+function ProfileForm({ setShowProfile }) {
+  const { userData, onUpdateUser } = useContext(Context);
   const { id, username, image, profile_information } = userData;
   const [userName, setUserName] = useState(username);
   const [img, setImg] = useState(image);
@@ -30,7 +30,7 @@ function ProfileForm({ setShowProfile, onUpdate }) {
     }).then((r) => {
       if (r.ok) {
         setShowProfile(true);
-        r.json().then((user) => onUpdate(user));
+        r.json().then((user) => onUpdateUser(user));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

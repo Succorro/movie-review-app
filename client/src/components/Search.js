@@ -7,7 +7,6 @@ function Search({ movies }) {
   const filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(search.toLowerCase())
   );
-  console.log(filteredMovies);
   return (
     <div>
       <Input type={"text"} value={search} setter={setSearch} />

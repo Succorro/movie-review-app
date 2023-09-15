@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Rating from "@mui/material/Rating/Rating";
 import Error from "../Error";
+import { Context } from "../../App";
 
-function ReviewFormUpdate({
-  setShowUpdate,
-  review,
-  rating,
-  onUpdateReview,
-  movieId,
-  id,
-}) {
+function ReviewFormUpdate({ setShowUpdate, reviewData, movieId }) {
+  const { id, review, rating } = reviewData;
   const [newReview, setReview] = useState(review);
   const [newRating, setRating] = useState(rating);
   const [errors, setErrors] = useState([]);
+  const { onUpdateReview } = useContext(Context);
 
   function handleSubmit(e) {
     e.preventDefault();

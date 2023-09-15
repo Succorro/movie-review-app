@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import Input from "../components/Input";
+import Input from "../Input";
 
 function MovieForm({ onCreateMovie }) {
   const [title, setTitle] = useState("");

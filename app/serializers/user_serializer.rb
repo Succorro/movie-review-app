@@ -1,5 +1,8 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :profile_information, :image
+  attributes :id, :username, :profile_information, :image, :unique_movies
 
-  has_many :reviews
+  def unique_movies 
+    object.movies.uniq
+  end
+
 end

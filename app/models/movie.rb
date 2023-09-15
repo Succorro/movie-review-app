@@ -14,5 +14,5 @@ class Movie < ApplicationRecord
              .group('movies.id') # grouping the results by movie id  
              .order('review_count DESC') # ordering the results in descending order by review count 
              .limit(6) #limit 6 to only display a few for the query 
-        end
+    end
 end

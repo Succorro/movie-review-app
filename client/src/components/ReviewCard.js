@@ -1,17 +1,16 @@
 import React, { useState, useContext } from "react";
 import { Rating } from "@mui/material";
 import ReviewFormUpdate from "./forms/ReviewFormUpdate";
-import { UserContext } from "../App";
+import { Context } from "../App";
 
-function ReviewCard({ reviewData, movieId, onDeleteReview, onUpdateReview }) {
-  const { id, review, rating, user } = reviewData;
+function ReviewCard({ reviewData, movieId }) {
+  const { review, rating, username, user_id } = reviewData;
   const [showUpdate, setShowUpdate] = useState(false);
-  const { userData } = useContext(UserContext);
-
+  const { userData, onDeleteReview } = useContext(Context);
   const displayReview = (
     <div className="d-inline-block mt-1" style={{ maxHeight: "100px" }}>
       <div>
-        <h3>{user.username}</h3>
+        <h3>{username}</h3>
         <Rating name="read-only" value={rating} readOnly />
       </div>
       <div className="card-text ">
@@ -26,18 +25,15 @@ function ReviewCard({ reviewData, movieId, onDeleteReview, onUpdateReview }) {
     });
     onDeleteReview(deletedReview, movieId);
   }
-  if (user.id === userData.id)
+  if (user_id === userData.id)
     return (
-      <>
+      <div className="col-md-4">
         {" "}
         {showUpdate ? (
           <ReviewFormUpdate
             setShowUpdate={setShowUpdate}
-            review={review}
-            rating={rating}
+            reviewData={reviewData}
             movieId={movieId}
-            onUpdateReview={onUpdateReview}
-            id={id}
           />
         ) : (
           <div
@@ -64,11 +60,13 @@ function ReviewCard({ reviewData, movieId, onDeleteReview, onUpdateReview }) {
             </div>
           </div>
         )}
-      </>
+      </div>
     );
   return (
-    <div className="card m-3" style={{ width: "300px", height: "200px" }}>
-      {displayReview}
+    <div className="col-md-4">
+      <div className="card m-3" style={{ width: "300px", height: "200px" }}>
+        {displayReview}
+      </div>
     </div>
   );
 }

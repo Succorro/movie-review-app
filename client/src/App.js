@@ -9,9 +9,9 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import MovieForm from "./pages/MovieForm";
+import MovieForm from "./components/forms/MovieForm";
 
-export const UserContext = createContext(null);
+export const Context = createContext(null);
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -20,31 +20,37 @@ function App() {
 
   useEffect(() => {
     // all-movies
-    fetch("/movies").then((r) => {
-      if (r.ok) {
-        r.json().then((movies) => {
-          setMovies(movies);
-        });
-      }
-    });
+    fetch("/movies")
+      .then((r) => r.json())
+      .then((movies) => {
+        setMovies(movies);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
   useEffect(() => {
     // popular-movies
-    fetch("/popular").then((r) => {
-      if (r.ok) {
-        r.json().then((movies) => {
-          setPopularMovies(movies);
-        });
-      }
-    });
+    fetch("/popular")
+      .then((r) => r.json())
+      .then((movies) => {
+        setPopularMovies(movies);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   useEffect(() => {
-    // auto-login
+    // user-login
 
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUserData(user));
+      } else {
+        r.json().then((error) => {
+          console.log(error);
+        });
       }
     });
   }, []);
@@ -52,53 +58,45 @@ function App() {
   if (!movies || !popularMovies) return <div id="loader"></div>;
   if (!userData) return <Login onLogin={setUserData} />;
 
-  function findMovie(id) {
-    return movies.filter((movie) => movie.id === id);
-  }
-
   function onCreateReview(review, movieId) {
     // iterate through movies to find reviews list for movie then add new review using spread operator
-    const currentMovie = findMovie(movieId)[0];
-    currentMovie.reviews = [...currentMovie.reviews, review];
-    const mapMovies = movies.map((movie) => {
-      if (movie.id === currentMovie.id) {
-        return currentMovie;
-      } else return movie;
+    const updatedMovies = movies.map((movie) => {
+      if (movie.id === movieId) {
+        const updatedReviews = [...movie.reviews, review];
+        return { ...movie, reviews: updatedReviews };
+      }
+      return movie;
     });
-    setMovies(mapMovies);
+
+    setMovies(updatedMovies);
   }
   function onDeleteReview(deletedReview, movieId) {
-    const currentMovie = findMovie(movieId)[0];
-    const filteredReviews = currentMovie.reviews.filter(
-      (review) => review.id !== deletedReview.id
-    );
-    currentMovie.reviews = filteredReviews;
-    const filteredMovies = movies.map((movie) => {
-      if (movie.id === currentMovie.id) {
-        return currentMovie;
-      } else return movie;
+    const deletedMovies = movies.map((movie) => {
+      if (movie.id === movieId) {
+        const updatedReviews = movie.reviews.filter(
+          (review) => review.id !== deletedReview.id
+        );
+        return { ...movie, reviews: updatedReviews };
+      }
+      return movie;
     });
-    setMovies(filteredMovies);
+    setMovies(deletedMovies);
   }
   function onUpdateReview(updatedReview, movieId) {
-    const currentMovie = findMovie(movieId)[0];
-    const filteredReviews = currentMovie.reviews.map((review) => {
-      if (review.id === updatedReview.id) {
-        return updatedReview;
-      } else return review;
+    const updatedMovies = movies.map((movie) => {
+      if (movie.id === movieId) {
+        const updatedReviews = movie.reviews.map((review) =>
+          review.id === updatedReview.id ? updatedReview : review
+        );
+        return { ...movie, reviews: updatedReviews };
+      }
+      return movie;
     });
-    currentMovie.reviews = filteredReviews;
-    const filteredMovies = movies.map((movie) => {
-      if (movie.id === currentMovie.id) {
-        return currentMovie;
-      } else return movie;
-    });
-    setMovies(filteredMovies);
+    setMovies(updatedMovies);
   }
 
   function onUpdateUser(userInfo) {
     const { username, image, profile_information } = userInfo;
-    console.log(userInfo);
     setUserData({
       ...userData,
       username: username,
@@ -126,22 +124,24 @@ function App() {
             <MovieForm onCreateMovie={onCreateMovie} />
           </Route>
           <Route path="/movies/:id">
-            <UserContext.Provider value={{ userData }}>
-              <Movie
-                movies={movies}
-                onCreateReview={onCreateReview}
-                onDeleteReview={onDeleteReview}
-                onUpdateReview={onUpdateReview}
-              />
-            </UserContext.Provider>
+            <Context.Provider
+              value={{
+                userData,
+                onCreateReview,
+                onDeleteReview,
+                onUpdateReview,
+              }}
+            >
+              <Movie movies={movies} />
+            </Context.Provider>
           </Route>
           <Route path="/movies">
             <Movies movies={movies} />
           </Route>
           <Route path="/profile">
-            <UserContext.Provider value={{ userData }}>
-              <Profile onUpdate={onUpdateUser} />
-            </UserContext.Provider>
+            <Context.Provider value={{ userData, onUpdateUser }}>
+              <Profile />
+            </Context.Provider>
           </Route>
           <Route path="/about">
             <About />

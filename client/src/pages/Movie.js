@@ -3,23 +3,19 @@ import ReviewList from "../components/ReviewList";
 import ReviewForm from "../components/forms/ReviewForm";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-function Movie({
-  movies,
-
-  onCreateReview,
-  onDeleteReview,
-  onUpdateReview,
-}) {
+function Movie({ movies }) {
   const [showForm, setShowForm] = useState(false);
   const { id } = useParams();
   const movieId = parseInt(id, 10);
-  const filterMovie = () => movies.find((movie) => movie.id === movieId);
-  const movie = filterMovie();
+  const movie = movies.find((movie) => movie.id === movieId);
+
   if (!movie)
     return (
       <>
         <h1>404 Error </h1>
-        <p>Movie Not Found</p>
+        <p>
+          Movie Not Found, please click on movies link at the top of the screen!
+        </p>
       </>
     );
 
@@ -45,19 +41,10 @@ function Movie({
         </div>
       </div>
       <h1>Reviews</h1>
-      <ReviewList
-        reviews={reviews}
-        onDeleteReview={onDeleteReview}
-        movieId={movie.id}
-        onUpdateReview={onUpdateReview}
-      />
+      <ReviewList reviews={reviews} movieId={movie.id} />
       {showForm ? (
         <div className="container d-block mb-5">
-          <ReviewForm
-            setShowForm={setShowForm}
-            movieId={movie.id}
-            onCreateReview={onCreateReview}
-          />
+          <ReviewForm setShowForm={setShowForm} movieId={movie.id} />
         </div>
       ) : (
         <div className="d-flex justify-content-center">

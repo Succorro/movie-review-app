@@ -13,7 +13,7 @@ function Profile({ onUpdate }) {
         </main>
       ) : (
         <main className="container card m-auto" class="container card m-auto">
-          <ProfileForm onUpdate={onUpdate} setShowProfile={setShowProfile} />
+          <ProfileForm setShowProfile={setShowProfile} />
         </main>
       )}
     </>
