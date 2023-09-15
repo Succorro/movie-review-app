@@ -68,10 +68,24 @@ function App() {
       return movie;
     });
 
+    const foundMovie = userData.unique_movies.some(
+      (movie) => movie.id === movieId
+    );
+
+    if (!foundMovie) {
+      const updatedUser = {
+        ...userData,
+        unique_movies: [
+          ...userData.unique_movies,
+          movies.find((movie) => movie.id === movieId),
+        ],
+      };
+      setUserData(updatedUser);
+    }
     setMovies(updatedMovies);
   }
   function onDeleteReview(deletedReview, movieId) {
-    const deletedMovies = movies.map((movie) => {
+    const updatedMovies = movies.map((movie) => {
       if (movie.id === movieId) {
         const updatedReviews = movie.reviews.filter(
           (review) => review.id !== deletedReview.id
@@ -80,7 +94,16 @@ function App() {
       }
       return movie;
     });
-    setMovies(deletedMovies);
+
+    const updatedUser = {
+      ...userData,
+      unique_movies: userData.unique_movies.filter(
+        (movie) => movie.id !== movieId
+      ),
+    };
+
+    setUserData(updatedUser);
+    setMovies(updatedMovies);
   }
   function onUpdateReview(updatedReview, movieId) {
     const updatedMovies = movies.map((movie) => {

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :reviews
 
   # Movie routes 
-  resources :movies, only: [:create, :index, :show]
+  resources :movies, only: [:create, :index]
   get '/popular', to: 'movies#popular'
    
   # User controller routes 

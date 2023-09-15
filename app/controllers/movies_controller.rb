@@ -5,11 +5,6 @@ class MoviesController < ApplicationController
     render json: Movie.all,  status: :ok 
     end
 
-    def show
-    movie = find_movie
-    render json: movie, status: :ok 
-    end
-    
     def popular 
         popular = Movie.trending_movies
         render json: popular, status: :ok 

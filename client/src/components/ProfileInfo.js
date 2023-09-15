@@ -1,16 +1,13 @@
 import React, { useContext } from "react";
 import { Context } from "../App";
+import TitleCard from "./TitleCard";
 
 function ProfileInfo({ setShowProfile }) {
   const { userData } = useContext(Context);
-  const { username, image, profile_information, reviews } = userData;
+  const { username, image, profile_information, unique_movies } = userData;
+  console.log(userData);
+  console.log(unique_movies);
 
-  console.log(reviews);
-
-  const filteredTitles = () => {
-    return [...new Set(reviews.map((review) => review.movie.title))];
-  };
-  console.log(filteredTitles());
   return (
     <div className="d-grid justify-content-center p-2">
       <div className="card-body ">
@@ -25,6 +22,10 @@ function ProfileInfo({ setShowProfile }) {
       <div className="card-body ">
         <h3>Bio:</h3>
         <p className="card-text">{profile_information}</p>
+      </div>
+      <div className="card-body">
+        <h3>Reviewed Movies</h3>
+        <TitleCard movies={unique_movies} />
       </div>
       <button
         onClick={() => setShowProfile(false)}
