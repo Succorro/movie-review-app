@@ -54,10 +54,12 @@ function App() {
       }
     });
   }, []);
-
+  // loaing icon while data processes
   if (!movies || !popularMovies) return <div id="loader"></div>;
+  // render Login for empty session
   if (!userData) return <Login onLogin={setUserData} />;
 
+  // Used to update component UI while staying stateful
   function onCreateReview(review, movieId) {
     // iterate through movies to find reviews list for movie then add new review using spread operator
     const updatedMovies = movies.map((movie) => {
@@ -135,48 +137,47 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <Navbar
-          userImg={userData.image}
-          setUser={setUserData}
-          movies={movies}
-        />
-        <Switch>
-          <Route path="/movies/new">
-            {" "}
-            <MovieForm onCreateMovie={onCreateMovie} />
-          </Route>
-          <Route path="/movies/:id">
-            <Context.Provider
-              value={{
-                userData,
-                onCreateReview,
-                onDeleteReview,
-                onUpdateReview,
-              }}
-            >
+      <Context.Provider
+        value={{
+          userData,
+          onCreateReview,
+          onDeleteReview,
+          onUpdateReview,
+          onUpdateUser,
+        }}
+      >
+        <div className="App">
+          <Navbar
+            userImg={userData.image}
+            setUser={setUserData}
+            movies={movies}
+          />
+          <Switch>
+            <Route path="/movies/new">
+              {" "}
+              <MovieForm onCreateMovie={onCreateMovie} />
+            </Route>
+            <Route path="/movies/:id">
               <Movie movies={movies} />
-            </Context.Provider>
-          </Route>
-          <Route path="/movies">
-            <Movies movies={movies} />
-          </Route>
-          <Route path="/profile">
-            <Context.Provider value={{ userData, onUpdateUser }}>
+            </Route>
+            <Route path="/movies">
+              <Movies movies={movies} />
+            </Route>
+            <Route path="/profile">
               <Profile />
-            </Context.Provider>
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/">
-            <Home popularMovies={popularMovies} />
-          </Route>
-        </Switch>
-      </div>
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/contact">
+              <Contact />
+            </Route>
+            <Route path="/">
+              <Home popularMovies={popularMovies} />
+            </Route>
+          </Switch>
+        </div>
+      </Context.Provider>
     </BrowserRouter>
   );
 }
