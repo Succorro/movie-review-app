@@ -1,15 +1,3 @@
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- Services (job queues, cache servers, search engines, etc.)
-
 # Movie Review App
 
 ## Description

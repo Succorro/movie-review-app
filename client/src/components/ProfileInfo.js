@@ -5,8 +5,6 @@ import TitleCard from "./TitleCard";
 function ProfileInfo({ setShowProfile }) {
   const { userData } = useContext(Context);
   const { username, image, profile_information, unique_movies } = userData;
-  console.log(userData);
-  console.log(unique_movies);
 
   return (
     <div className="d-grid justify-content-center p-2">

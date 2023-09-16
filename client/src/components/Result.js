@@ -15,6 +15,7 @@ function Result({ movies, setter }) {
             className="list-group-item list-group-item-light"
             onClick={() => setter("")}
             to={`/movies/${id}`}
+            key={id}
           >
             {title}
           </Link>
