@@ -96,15 +96,27 @@ function App() {
       }
       return movie;
     });
-
-    const updatedUser = {
-      ...userData,
-      unique_movies: userData.unique_movies.filter(
-        (movie) => movie.id !== movieId
-      ),
-    };
-
-    setUserData(updatedUser);
+    // maps and filters movie that contains reviews for current user
+    const movieWithReviews = movies
+      .map((movie) => ({
+        ...movie,
+        reviews: movie.reviews.filter(
+          (review) =>
+            // ensures that movie reviews match movie and user ids
+            review.movie_id === movieId && review.user_id === userData.id
+        ),
+      }))
+      .filter((movie) => movie.reviews.length > 0)[0];
+    // conditional used to set user unique movies array to reflect an update in existence of movie reviews for a particular movie
+    if (movieWithReviews.reviews.length <= 1) {
+      const updatedUser = {
+        ...userData,
+        unique_movies: userData.unique_movies.filter(
+          (movie) => movie.id !== movieId
+        ),
+      };
+      setUserData(updatedUser);
+    }
     setMovies(updatedMovies);
   }
   function onUpdateReview(updatedReview, movieId) {
@@ -134,7 +146,7 @@ function App() {
     const newMovie = [...movies, movieData];
     setMovies(newMovie);
   }
-
+  console.log(movies);
   return (
     <BrowserRouter>
       <Context.Provider

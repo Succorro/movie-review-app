@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ProfileInfo from "../components/ProfileInfo";
 import ProfileForm from "../components/forms/ProfileForm";
 
-function Profile({ onUpdate }) {
+function Profile() {
   const [showProfile, setShowProfile] = useState(true);
 
   return (
