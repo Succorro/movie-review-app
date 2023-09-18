@@ -25,6 +25,7 @@ function ReviewCard({ reviewData, movieId }) {
     });
     onDeleteReview(deletedReview, movieId);
   }
+
   if (user_id === userData.id)
     return (
       <div className="col-md-4">

@@ -1,8 +1,4 @@
 class ReviewsController < ApplicationController
-    def index 
-        render json: Review.all, status: :ok 
-    end 
-
     def create 
         review = @current_user.reviews.create!(review_params)
         render json: review, status: :created
@@ -10,14 +6,22 @@ class ReviewsController < ApplicationController
 
     def update 
         review = @current_user.reviews.find_by(id: params[:id])
-        review.update!(review_params)
-        render json: review, status: :accepted 
+        if @current_user.reviews.include?(review)
+            review&.update!(review_params)
+            render json: review, status: :accepted
+        else 
+            render json: { errors: ["Not authorized"] }, status: :unauthorized
+        end 
     end 
 
     def destroy 
         review = @current_user.reviews.find_by(id: params[:id]) 
-        review.destroy 
-        head :no_content 
+        if @current_user.reviews.include?(review)
+            review&.destroy 
+            head :no_content 
+        else
+            render json: { errors: ["Not authorized"] }, status: :unauthorized
+        end 
     end  
 
     private 

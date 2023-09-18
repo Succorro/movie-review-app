@@ -54,8 +54,10 @@ function App() {
       }
     });
   }, []);
+
   // loaing icon while data processes
   if (!movies || !popularMovies) return <div id="loader"></div>;
+
   // render Login for empty session
   if (!userData) return <Login onLogin={setUserData} />;
 
@@ -146,7 +148,6 @@ function App() {
     const newMovie = [...movies, movieData];
     setMovies(newMovie);
   }
-  console.log(movies);
   return (
     <BrowserRouter>
       <Context.Provider
