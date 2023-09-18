@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
             review&.update!(review_params)
             render json: review, status: :accepted
         else 
-            render json: { errors: ["Not authorized"] }, status: :unauthorized
+            render json: { errors: ["Not authorized to update review"] }, status: :unauthorized
         end 
     end 
 
@@ -20,11 +20,12 @@ class ReviewsController < ApplicationController
             review&.destroy 
             head :no_content 
         else
-            render json: { errors: ["Not authorized"] }, status: :unauthorized
+            render json: { errors: ["Not authorized to delete review"] }, status: :unauthorized
         end 
     end  
 
     private 
+    
     def review_params 
         params.permit(:review, :rating, :movie_id)
     end 

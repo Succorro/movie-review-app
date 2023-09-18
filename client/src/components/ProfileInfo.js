@@ -4,7 +4,7 @@ import TitleCard from "./TitleCard";
 
 function ProfileInfo({ setShowProfile }) {
   const { userData } = useContext(Context);
-  const { username, image, profile_information, unique_movies } = userData;
+  const { username, image, profile_information, movies } = userData;
 
   return (
     <div className="d-grid justify-content-center p-2">
@@ -23,7 +23,7 @@ function ProfileInfo({ setShowProfile }) {
       </div>
       <div className="card-body">
         <h3>Reviewed Movies</h3>
-        <TitleCard movies={unique_movies} />
+        <TitleCard movies={movies} />
       </div>
       <button
         onClick={() => setShowProfile(false)}

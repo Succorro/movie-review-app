@@ -9,11 +9,10 @@ class UsersController < ApplicationController
     user = User.create!(user_params)
     session[:user_id] = user.id 
     render json: user, status: :created 
-end 
+  end 
 
   def update
-    user = @current_user
-    user.update!(user_params)
+    @current_user.update!(user_params)
     render json: user, status: :accepted 
   end
 

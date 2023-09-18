@@ -61,7 +61,7 @@ function App() {
   // render Login for empty session
   if (!userData) return <Login onLogin={setUserData} />;
 
-  // Used to update component UI while staying stateful
+  // Used to update component UI
   function onCreateReview(review, movieId) {
     // iterate through movies to find reviews list for movie then add new review using spread operator
     const updatedMovies = movies.map((movie) => {
@@ -72,15 +72,13 @@ function App() {
       return movie;
     });
 
-    const foundMovie = userData.unique_movies.some(
-      (movie) => movie.id === movieId
-    );
+    const foundMovie = userData.movies.some((movie) => movie.id === movieId);
 
     if (!foundMovie) {
       const updatedUser = {
         ...userData,
-        unique_movies: [
-          ...userData.unique_movies,
+        movies: [
+          ...userData.movies,
           movies.find((movie) => movie.id === movieId),
         ],
       };
@@ -113,9 +111,7 @@ function App() {
     if (movieWithReviews.reviews.length <= 1) {
       const updatedUser = {
         ...userData,
-        unique_movies: userData.unique_movies.filter(
-          (movie) => movie.id !== movieId
-        ),
+        movies: userData.movies.filter((movie) => movie.id !== movieId),
       };
       setUserData(updatedUser);
     }

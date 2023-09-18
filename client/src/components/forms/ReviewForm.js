@@ -5,7 +5,7 @@ import Error from "../Error";
 
 function ReviewForm({ setShowForm, movieId }) {
   const [review, setReview] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(null);
   const [errors, setErrors] = useState([]);
   const { onCreateReview } = useContext(Context);
 

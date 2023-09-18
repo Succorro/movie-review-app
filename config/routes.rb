@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
+  
   # Review routes 
-  resources :reviews
-
+  resources :reviews, only: [:create, :update, :destroy]
   # Movie routes 
-  resources :movies, only: [:create, :index]
+  resources :movies, only: [:create, :index] 
   get '/popular', to: 'movies#popular'
    
   # User routes 
