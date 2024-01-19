@@ -7,6 +7,7 @@ function MovieCard({ movie }) {
     history.push(`/movies/${id}`);
   }
   const { id, title, genre } = movie;
+
   return (
     <div
       className="card text-bg-light m-2"

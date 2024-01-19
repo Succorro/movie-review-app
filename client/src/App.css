@@ -62,3 +62,11 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+#image-div {
+  width: 100vw;
+}
+
+#image-div img {
+  width: 30%;
+}

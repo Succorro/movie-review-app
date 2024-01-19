@@ -12,7 +12,9 @@ function Home({ popularMovies }) {
           below!
         </p>
       </main>
-
+      <div id="image-div">
+        <img src="up.jpeg" alt="UP" />
+      </div>
       <div className="container ">
         <MoviesList movies={popularMovies} />
       </div>

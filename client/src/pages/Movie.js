@@ -20,10 +20,18 @@ function Movie({ movies }) {
     );
 
   const { title, release_year, genre, director, description, reviews } = movie;
-
+  let image;
+  if (title === "Up") {
+    image = "up.jpeg";
+  } else {
+    image = "";
+  }
   return (
     <div className="d-grid m-auto">
       <h1 className="my-3">{title}</h1>
+      <div id="image-div">
+        <img src="/up.jpeg" alt="UP" />
+      </div>
       <div className="card-group d-flex">
         <div className="card d-grid p-1 m-3">
           <h4 className="card-text">Release Date:</h4>
